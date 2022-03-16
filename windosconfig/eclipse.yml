@@ -1,0 +1,13 @@
+---
+- hosts: windowsserver
+  tasks:
+    - name: Change ssh port to 5986
+      set_fact:
+        ansible_port: 5986
+    - name: Install Eclipse 
+      win_chocolatey:
+        name: eclipse 
+        state: present
+        package_params:
+          AdditionalTools: yes
+

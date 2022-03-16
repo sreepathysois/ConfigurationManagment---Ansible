@@ -1,0 +1,11 @@
+---
+- hosts: windowsserver
+  tasks:
+    - name: Change ssh port to 5986
+      set_fact:
+        ansible_port: 5986
+    - name: Copy a single file
+      win_copy:
+        src: ./files/myindex.html 
+        #dest: C:\Users\SOIS\AppData\Roaming\Apache24\htdocs\myindex.html 
+        dest: C:\Apache24\htdocs\myindex.html 

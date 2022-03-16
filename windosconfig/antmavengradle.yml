@@ -1,0 +1,24 @@
+---
+- hosts: windowsserver
+  tasks:
+    - name: Change ssh port to 5986
+      set_fact:
+        ansible_port: 5986
+    - name: Install ant 
+      win_chocolatey:
+        name: ant 
+        state: present
+        package_params:
+          AdditionalTools: yes
+    - name: Install Gradle 
+      win_chocolatey:
+        name: gradle 
+        state: present
+        package_params:
+          AdditionalTools: yes
+    - name: Install Maven 
+      win_chocolatey:
+        name: maven 
+        state: present
+        package_params:
+          AdditionalTools: yes

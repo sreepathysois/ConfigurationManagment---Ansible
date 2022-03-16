@@ -1,0 +1,10 @@
+---
+- hosts: windowsserver
+  tasks:
+    - name: Change ssh port to 5986
+      set_fact:
+        ansible_port: 5986
+    - name: Copy a single file
+      win_copy:
+        src: ./files/index.php 
+        dest: C:\xampp\htdocs\index.php

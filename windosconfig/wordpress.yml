@@ -1,0 +1,16 @@
+---
+- hosts: windowsserver
+  tasks:
+    - name: Change ssh port to 5986
+      set_fact:
+        ansible_port: 5986
+    - name: Copy a single file
+      win_copy:
+        src: ./files/index.php
+        dest: C:\xampp\htdocs\index.php
+
+    - name: Unarchive a file that is already on the remote machine
+      win_unzip: 
+        src: C:\Users\SOIS\Downloads\wordpress.zip 
+        dest: C:\xampp\htdocs\
+        remote_src: yes

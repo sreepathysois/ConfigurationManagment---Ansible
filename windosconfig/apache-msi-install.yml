@@ -1,0 +1,22 @@
+---
+- name: Installing Apache MSI 
+  hosts: windowsserver 
+  tasks:
+     - name: Change ssh port to 5986
+       set_fact:
+         ansible_port: 5986
+       gather_facts: false
+ 
+  tasks:
+    - name: Download the Apache installer
+      win_get_url:
+        url: 'https://archive.apache.org/dist/httpd/binaries/win32/apache_1.3.17-win32-no_src.msi'
+        dest: 'C:\Users\sois\Downloads\httpd-2.2.25-win32-x86-no_ssl.msi'
+
+    - name: Install MSI
+      win_package: 
+        path: 'C:\Users\sois\Downloads\httpd-2.2.25-win32-x86-no_ssl.msi'
+        arguments:
+          - /install
+          - /passive
+          - /norestart

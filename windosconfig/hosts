@@ -1,0 +1,10 @@
+[windowsserver]
+172.16.51.23  
+[windowsserver:vars]
+ansible_user=sois 
+ansible_password=mcis@1  
+ansible_port=5986
+ansible_connection=winrm
+#ansible_winrm_transport=basic
+ansible_winrm_server_cert_validation=ignore
+

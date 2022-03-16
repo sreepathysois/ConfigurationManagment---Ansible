@@ -1,0 +1,50 @@
+----install winrm in windows----- 
+
+---Run following commnad on power shell ---
+
+WinRM quickconfig
+
+---if u get error of private and public domain network ----
+
+Enable-PSRemoting -SkipNetworkProfileCheck -Force
+
+Set-NetConnectionProfile -NetworkCategory Private
+
+Run following script 
+
+--script path ----
+
+https://github.com/ansible/ansible/blob/devel/examples/scripts/ConfigureRemotingForAnsible.ps1
+
+save and run ./ConfigureRemotingForAnsible.ps1
+
+-- if u get unauthorized acess error ---
+
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+
+---enable 5986 inbound and outbound rule in windows firewall defender----
+
+install choclatey 
+
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+
+in ansible host configuration
+
+[windowsserver]
+172.16.51.127
+[windowsserver:vars]
+ansible_user=sois
+ansible_password=mcis@1
+ansible_port=5986
+ansible_connection=winrm
+#ansible_winrm_transport=basic
+ansible_winrm_server_cert_validation=ignore
+
+sudo ansible-playbook -i hosts visualstudio.yml  -u sois -K
+
+
+
+
+
+

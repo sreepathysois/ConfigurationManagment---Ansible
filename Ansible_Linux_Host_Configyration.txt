@@ -1,0 +1,24 @@
+ssh-keygen
+
+ssh-copy-id -i ansiblekey.pub sois@172.16.51.38
+
+linux host/node
+
+sudo visudo
+
+sois ALL=(ALL) NOPASSWD: ALL
+
+sudo ansible-playbook xampp.yml  -i hosts  -u sois  --ask-pass
+ 
+sudo ansible-playbook xampp.yml  -i hosts  -u sois  -K
+
+
+hosts or vi /etc/ansible/hosts
+
+[lampserver]
+172.16.51.38
+[lampserver:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+
+
